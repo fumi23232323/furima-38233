@@ -16,32 +16,32 @@
 -has_many:orders
 
 ##itemsテーブル
-|Column            |Type        |Options                    |
-|------------------|------------|---------------------------|
-｜seller           ｜references ｜null:false,foreign_key:true｜
-｜item_name        ｜string     ｜null:false                 ｜
-｜item_description ｜text       ｜null:false                 ｜
-｜item_category    ｜integer    ｜null:false                 ｜
-｜item_status      ｜integer    ｜null:false                 ｜
-｜delivery_charge  ｜integer    ｜null:false                 ｜
-｜delivery_area    ｜integer    ｜null:false                 ｜
-｜delivery_days    ｜integer    ｜null:false                 ｜
-｜price            ｜integer    ｜null:false                 ｜
+|Column               |Type        |Options                    |
+|---------------------|------------|---------------------------|
+｜user                ｜references ｜null:false,foreign_key:true｜
+｜item_name           ｜string     ｜null:false                 ｜
+｜item_description    ｜text       ｜null:false                 ｜
+｜item_category_id    ｜integer    ｜null:false                 ｜
+｜item_status_id      ｜integer    ｜null:false                 ｜
+｜delivery_charge_id  ｜integer    ｜null:false                 ｜
+｜prefecture_id       ｜integer    ｜null:false                 ｜
+｜delivery_days_id    ｜integer    ｜null:false                 ｜
+｜price               ｜integer    ｜null:false                 ｜
 
 ＃＃＃Association
 -belongs_to:user
 -has_one:order
 
 ##delivery_addressesテーブル
-|Column      |Type       |Options                    |
-|------------|-----------|---------------------------|
-｜oreder     ｜references｜null:false,foreign_key:true｜
-｜postal_code｜string    ｜null:false                 ｜
-｜prefecture ｜integer   ｜null:false                 ｜
-｜city       ｜string    ｜null:false                 ｜
-｜block      ｜string    ｜null:false                 ｜
-｜building   ｜string    ｜                           ｜
-｜phonenumber｜string    ｜null:false                 ｜
+|Column         |Type       |Options                    |
+|---------------|-----------|---------------------------|
+｜oreder        ｜references｜null:false,foreign_key:true｜
+｜postal_code   ｜string    ｜null:false                 ｜
+｜prefecture_id ｜integer   ｜null:false                 ｜
+｜city          ｜string    ｜null:false                 ｜
+｜block         ｜string    ｜null:false                 ｜
+｜building      ｜string    ｜                           ｜
+｜phonenumber   ｜string    ｜null:false                 ｜
 
 Association
 -belongs_to:order
