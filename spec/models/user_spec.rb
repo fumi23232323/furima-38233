@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
       it 'パスワードが空欄だと保存できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password can't be blank", "Password Include both letters and numbers", "Password confirmation doesn't match Password"
+        expect(@user.errors.full_messages).to include "Password can't be blank", "Password Include both letters and numbers in half-width characters", "Password confirmation doesn't match Password"
       end
       it 'パスワード（確認）が空欄だと保存できない' do
         @user.password = '123abc'
@@ -78,13 +78,13 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
+        expect(@user.errors.full_messages).to include "Password Include both letters and numbers in half-width characters"
       end
       it 'パスワード（確認含む）が半角英数字の混合でなければ登録できない(英字のみ)' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password Include both letters and numbers"
+        expect(@user.errors.full_messages).to include "Password Include both letters and numbers in half-width characters"
       end
       it 'passwordとpassword_confirmationが一致していないと登録できない' do
         @user.password = 'abc123'
@@ -116,6 +116,32 @@ RSpec.describe User, type: :model do
         @user.birthday = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
+      end
+      it '名前が空欄だと登録できない' do
+        @user.first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name can't be blank"
+      end
+      it '名字が空欄だと登録できない' do
+        @user.last_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name can't be blank"
+      end
+      it '名前のフリガナが空欄だと保存できない' do
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name kana can't be blank"
+      end
+      it '名字のフリガナが空欄だと保存できない' do
+        @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name kana can't be blank"
+      end
+      it 'パスワードが全角文字を含むと保存できない' do
+        @user.password = 'ＡＢc１23'
+        @user.password_confirmation = 'ＡＢc１23'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password Include both letters and numbers in half-width characters"
       end
     end
   end

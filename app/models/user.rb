@@ -9,7 +9,7 @@ class User < ApplicationRecord
   with_options presence: true do
   # 半角英数字混合
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze  
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers in half-width characters'
 
   validates :nickname, uniqueness: true
   validates :email, uniqueness: true
