@@ -7,19 +7,21 @@ class User < ApplicationRecord
   # has_many :orders
 
   with_options presence: true do
-  # 半角英数字混合
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze  
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers in half-width characters'
-
-  validates :nickname, uniqueness: true
-  validates :email, uniqueness: true
+  
+  validates :nickname
+  validates :email
   # 全角ひらがな カタカナ 漢字
-  validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]/ }
-  validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]/ }
+  validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+  validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   # 全角カタカナ
   validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
   validates :birthday
   end
+  
+  # 半角英数字混合
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze  
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers in half-width characters'
+
 end
