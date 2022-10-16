@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
       it 'パスワードが空欄だと保存できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password can't be blank", "Password Include both letters and numbers in half-width characters", "Password confirmation doesn't match Password"
+        expect(@user.errors.full_messages).to include "Password can't be blank"
       end
       it 'パスワード（確認）が空欄だと保存できない' do
         @user.password = '123abc'
