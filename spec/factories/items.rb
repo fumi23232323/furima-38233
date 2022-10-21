@@ -10,10 +10,9 @@ FactoryBot.define do
     prefecture_id{Faker::Number.between(from: 1, to: 47 )}
     delivery_days_id{Faker::Number.between(from: 1, to: 3 )}
     price {Faker::Number.between(from: 300, to: 9999999)}
-    
 
     after(:build) do |item|
-      item.image.attach(io: File.open('assets/images/item-sample.png'), filename: 'test_sample.png')
+      item.image.attach(io: File.open('public/images/test.jpeg'), filename: 'test.jpeg')
     end
   end
 end

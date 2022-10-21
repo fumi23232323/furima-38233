@@ -14,7 +14,6 @@ belongs_to :user
 # has_one:order
 
 with_options presence: true do
-validates:user 
 validates:image
 validates:item_name
 validates:item_description
