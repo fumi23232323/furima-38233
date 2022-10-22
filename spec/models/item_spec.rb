@@ -10,30 +10,6 @@ RSpec.describe Item, type: :model do
      it '全ての項目が入力されていると登録できる' do
       expect(@item).to be_valid
      end
-     it 'カテゴリーが「---」以外を選択されれば登録できる' do
-      @item.item_category_id = 3
-      expect(@item).to be_valid
-    end
-    it '商品の状態が「---」以外を選択されれば登録できる' do
-      @item.item_status_id = 1
-      expect(@item).to be_valid
-    end
-    it '配送料の負担が「---」以外を選択されれば登録できる' do
-      @item.delivery_charge_id = 1
-      expect(@item).to be_valid
-    end
-    it '発送元の地域が「---」以外を選択されれば登録できる' do
-      @item.prefecture_id = 1
-      expect(@item).to be_valid
-    end
-    it '発送までの日数が「---」以外を選択されれば登録できる' do
-      @item.delivery_days_id = 1
-      expect(@item).to be_valid
-    end
-     it '価格は半角数値で、かつ300円〜9,999,999円であれば登録できる' do
-      @item.price = 500
-      expect(@item).to be_valid
-    end
   end
 
     context '出品ができないとき' do
