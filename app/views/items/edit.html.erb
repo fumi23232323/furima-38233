@@ -29,7 +29,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
       <div class="weight-bold-text">
-        <%= @item.item_name %>
+        商品名
         <span class="indispensable">必須</span>
       </div>
       <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
