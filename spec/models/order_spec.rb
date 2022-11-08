@@ -1,5 +1,11 @@
 require 'rails_helper'
 
+RSpec.describe Order, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end
+
+require 'rails_helper'
+
 RSpec.describe OrderForm, type: :model do
   before do
     @order_form = FactoryBot.build(:order_form)
@@ -99,6 +105,11 @@ RSpec.describe OrderForm, type: :model do
         @order_form.phone_number = 12345678910123
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'トークンが空だと保存できないこと' do
+        @order_form.token = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
       end
       
     end
