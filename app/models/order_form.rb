@@ -17,6 +17,6 @@ class OrderForm
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    DeliveryAddress.create(order_id: order_id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, block: block, building: building, phonenumber: phonenumber)  
+    DeliveryAddress.create(order_id: order.id, postal_code: postal_code, prefecture_id: prefecture_id, city: city, block: block, building: building, phonenumber: phonenumber)  
   end
 end

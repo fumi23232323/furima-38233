@@ -7,7 +7,7 @@ RSpec.describe OrderForm, type: :model do
 
   describe '商品購入機能' do
     context '商品が購入ができるとき' do
-     it '全ての項目(building以外)が入力されていると登録できる' do
+     it '全ての項目(building以外)が入力されていると保存できる' do
       expect(@order_form).to be_valid
      end
      it 'user_idが空でなければ保存できる' do
@@ -42,6 +42,10 @@ RSpec.describe OrderForm, type: :model do
       @order_form.phonenumber = 12345678910
       expect(@order_form).to be_valid
     end
+    it 'トークンが空でなければ保存できる' do
+      @order_form.token = 12345678901234567890123
+      expect(@order_form).to be_valid
+    end
   end
 
     context '購入ができないとき' do
@@ -55,37 +59,37 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
-      it '郵便番号が入力されていないと購入できない' do
+      it '郵便番号が入力されていないと保存できない' do
         @order_form.postal_code = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
       end
-      it '郵便番号にハイフンがないと購入できない' do 
+      it '郵便番号にハイフンがないと保存できない' do 
         @order_form.postal_code = 1234567
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
-      it '都道府県が入力されていないと出品できない' do
+      it '都道府県が入力されていないと保存できない' do
         @order_form.prefecture_id = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it '都道府県が「---」だと購入できない' do
+      it '都道府県が「---」だと保存できない' do
         @order_form.prefecture_id = 0
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it '市区町村が入力されていないと購入できない' do
+      it '市区町村が入力されていないと保存できない' do
         @order_form.city = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("City can't be blank")
       end
-      it '番地が入力されていないと購入できない' do
+      it '番地が入力されていないと保存できない' do
         @order_form.block = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Block can't be blank")
       end
-      it '電話番号が入力されていないと購入できない' do
+      it '電話番号が入力されていないと保存できない' do
         @order_form.phonenumber = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Phonenumber can't be blank")
