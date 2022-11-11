@@ -11,7 +11,7 @@ belongs_to :delivery_days
 has_one_attached :image
 
 belongs_to :user
-# has_one:order
+has_one :order
 
 with_options presence: true do
 validates:image
