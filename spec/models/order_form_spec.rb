@@ -11,12 +11,14 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form).to be_valid
      end
      it 'user_idが空でなければ保存できる' do
-      @order_form.user_id = 1
-      expect(@order_form).to be_valid
+      @order_form.user_id = FactoryBot.create(:user)
+      expect(@order_form.user_id).to be_valid
+      
     end
     it 'item_idが空でなければ保存できる' do
-      @order_form.item_id = 1
-      expect(@order_form).to be_valid
+      @order_form.item_id = FactoryBot.create(:item)
+      expect(@order_form.item_id).to be_valid
+      
     end
     it '郵便番号が「3桁ハイフン4桁」の組み合わせであれば保存できる' do
       @order_form.postal_code = '123-4560'
