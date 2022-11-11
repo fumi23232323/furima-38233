@@ -2,24 +2,16 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
   before do
-    @order_form = FactoryBot.build(:order_form)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入機能' do
     context '商品が購入ができるとき' do
-     it '全ての項目(building以外)が入力されていると保存できる' do
+     it '全ての項目が入力されていると保存できる' do
       expect(@order_form).to be_valid
      end
-     it 'user_idが空でなければ保存できる' do
-      @order_form.user_id = FactoryBot.create(:user)
-      expect(@order_form.user_id).to be_valid
-      
-    end
-    it 'item_idが空でなければ保存できる' do
-      @order_form.item_id = FactoryBot.create(:item)
-      expect(@order_form.item_id).to be_valid
-      
-    end
     it '郵便番号が「3桁ハイフン4桁」の組み合わせであれば保存できる' do
       @order_form.postal_code = '123-4560'
       expect(@order_form).to be_valid
